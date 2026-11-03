@@ -6,6 +6,8 @@ metadata:
     - calendar
     - google
     - agenda
+    - toolbar
+  appTargetVersion: [2, 8, 10]
 icon: FaCalendarAlt
 preset: Popup
 instances: Single

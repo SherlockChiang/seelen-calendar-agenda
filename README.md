@@ -107,6 +107,14 @@ Build the release zip into `dist/`:
 npm run package
 ```
 
+Build the Seelen store upload file into `dist/` (needs Seelen UI running); the images and listing text are in [`docs/store/`](docs/store/listing.md):
+
+```bash
+npm run bundle
+```
+
+`widget/toolbar-plugin.yml` triggers the popup with `${self.id}`, which Seelen resolves to the widget's real ID: `@sherlockchiang/gcal-agenda` for a folder install, the marketplace UUID for a store install. A store install keeps its settings and sign-in separately from a folder install.
+
 Session-only loading through the `slu` CLI is also available: `npm run load` / `npm run reload` / `npm run unload`. You can also open the popup directly with `slu.exe widget trigger @sherlockchiang/gcal-agenda`; with the popup focused, `Ctrl+Shift+I` opens DevTools. Seelen's log is `%LOCALAPPDATA%\com.seelen.seelen-ui\logs\Seelen UI.log`; search for `gcal-agenda`.
 
 Seelen UI 2.8.10 quirks found while building this:

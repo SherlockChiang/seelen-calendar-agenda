@@ -1,0 +1,140 @@
+<!doctype html>
+<!--
+  Seelen store images, rendered from the mock preview (fake events only).
+  Serve with `npm run preview`, then open /dev/store.html?asset=<name>&lang=<en|zh-CN>
+  at the asset's size: screenshot 1920x1080, banner 2100x900, portrait 512x512.
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      html,
+      body {
+        margin: 0;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        font-family: "Segoe UI Variable Display", "Segoe UI", "Microsoft YaHei UI", system-ui, sans-serif;
+        color: #fff;
+      }
+      .scene {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background:
+          radial-gradient(circle at 20% 30%, #3b5ba9 0, transparent 45%),
+          radial-gradient(circle at 85% 80%, #a3487a 0, transparent 50%),
+          linear-gradient(135deg, #141a33, #2a1d3a 60%, #3a2430);
+      }
+      .bar {
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(20, 20, 24, 0.82);
+        font-size: 17px;
+      }
+      .bar .date {
+        padding: 3px 12px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.14);
+      }
+      iframe {
+        position: absolute;
+        width: 342px;
+        height: 560px;
+        border: 0;
+        background: transparent;
+        transform-origin: top left;
+      }
+      .shot iframe {
+        left: calc(50% - 342px * 0.8);
+        top: 52px;
+        transform: scale(1.6);
+      }
+      .banner .text {
+        position: absolute;
+        left: 150px;
+        top: 50%;
+        transform: translateY(-50%);
+        max-width: 1050px;
+      }
+      .banner h1 {
+        margin: 0 0 24px;
+        font-size: 92px;
+        line-height: 1.05;
+        font-weight: 700;
+      }
+      .banner p {
+        margin: 0;
+        font-size: 38px;
+        opacity: 0.85;
+      }
+      .banner iframe {
+        right: 170px;
+        top: 70px;
+        transform: scale(1.36);
+        transform-origin: top right;
+      }
+      .portrait {
+        display: grid;
+        place-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="scene" class="scene"></div>
+    <script>
+      const params = new URLSearchParams(location.search);
+      const asset = params.get("asset") ?? "screenshot";
+      const lang = params.get("lang") ?? "en";
+      const zh = lang.startsWith("zh");
+      const scene = document.getElementById("scene");
+      const frame = () => {
+        const f = document.createElement("iframe");
+        f.src = `/dev/frame.html?scenario=agenda&lang=${lang}&theme=dark`;
+        return f;
+      };
+      const now = new Date();
+      const date = new Intl.DateTimeFormat(lang, { month: "short", day: "2-digit", weekday: "long" }).format(now);
+      const time = new Intl.DateTimeFormat(lang, { hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).format(now);
+
+      if (asset === "screenshot") {
+        scene.classList.add("shot");
+        scene.innerHTML = `<div class="bar"><span class="date"></span></div>`;
+        scene.querySelector(".date").textContent = `${date}, ${time}`;
+        scene.append(frame());
+      } else if (asset === "banner") {
+        scene.classList.add("banner");
+        scene.innerHTML = `<div class="text"><h1></h1><p></p></div>`;
+        scene.querySelector("h1").textContent = zh ? "顶栏里的 Google 日历" : "Google Calendar in your top bar";
+        scene.querySelector("p").textContent = zh
+          ? "点击 Seelen UI 顶栏的日期，查看月历和每天的日程。"
+          : "Click the date in Seelen UI's top bar for a month view with your events.";
+        scene.append(frame());
+      } else {
+        scene.classList.add("portrait");
+        scene.innerHTML = `
+          <svg viewBox="0 0 512 512" width="100%" height="100%" aria-hidden="true">
+            <rect x="96" y="112" width="320" height="300" rx="44" fill="#26272c" stroke="#3d3f47" stroke-width="6"/>
+            <path d="M96 196h320" stroke="#3d3f47" stroke-width="6"/>
+            <rect x="96" y="112" width="320" height="84" rx="44" fill="#4c8dff"/>
+            <rect x="96" y="160" width="320" height="36" fill="#4c8dff"/>
+            <rect x="168" y="84" width="22" height="64" rx="11" fill="#e8eaf0"/>
+            <rect x="322" y="84" width="22" height="64" rx="11" fill="#e8eaf0"/>
+            <circle cx="186" cy="282" r="38" fill="#4c8dff"/>
+            <text x="186" y="296" text-anchor="middle" font-size="40" font-weight="700" fill="#fff" font-family="Segoe UI, sans-serif">3</text>
+            <circle cx="256" cy="282" r="9" fill="#e8eaf0" opacity="0.45"/>
+            <circle cx="326" cy="282" r="9" fill="#e8eaf0" opacity="0.45"/>
+            <circle cx="256" cy="356" r="9" fill="#e8eaf0" opacity="0.45"/>
+            <circle cx="326" cy="356" r="9" fill="#e8eaf0" opacity="0.45"/>
+            <circle cx="166" cy="334" r="8" fill="#4285f4"/>
+            <circle cx="186" cy="334" r="8" fill="#ea4335"/>
+            <circle cx="206" cy="334" r="8" fill="#34a853"/>
+          </svg>`;
+      }
+    </script>
+  </body>
+</html>

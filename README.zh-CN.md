@@ -107,6 +107,14 @@ npm run uninstall-widget
 npm run package
 ```
 
+在 `dist/` 生成 Seelen 商店上传文件（需要 Seelen UI 正在运行）；图片和商店文案在 [`docs/store/`](docs/store/listing.md)：
+
+```bash
+npm run bundle
+```
+
+`widget/toolbar-plugin.yml` 用 `${self.id}` 打开弹窗，Seelen 会把它替换成小组件的实际 ID：从文件夹安装时是 `@sherlockchiang/gcal-agenda`，从商店安装时是商店分配的 UUID。商店版的设置和登录状态与文件夹版相互独立。
+
 也可以用 `slu` 命令临时加载，只在本次 Seelen 运行期间有效：`npm run load` / `npm run reload` / `npm run unload`。也可以用 `slu.exe widget trigger @sherlockchiang/gcal-agenda` 直接打开弹窗；弹窗获得焦点时按 `Ctrl+Shift+I` 打开 DevTools。Seelen 日志在 `%LOCALAPPDATA%\com.seelen.seelen-ui\logs\Seelen UI.log`，搜索 `gcal-agenda`。
 
 开发中发现的 Seelen UI 2.8.10 行为：
