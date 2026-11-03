@@ -1,0 +1,44 @@
+{
+  "name": "seelen-calendar-agenda",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Seelen UI top-bar calendar popup that shows your Google Calendar events",
+  "keywords": [
+    "seelen-ui",
+    "widget",
+    "google-calendar",
+    "windows"
+  ],
+  "author": "SherlockChiang",
+  "license": "AGPL-3.0-only",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SherlockChiang/seelen-calendar-agenda.git"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "build": "esbuild src/main.ts --bundle --format=esm --target=es2022 --platform=browser --outfile=widget/index.js",
+    "watch": "npm run build -- --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test \"test/**/*.test.ts\"",
+    "preview": "esbuild src/main.ts --bundle --format=esm --target=es2022 --platform=browser --alias:@seelen-ui/lib=./dev/mock-lib --outfile=dev/out/frame.js --servedir=. --serve=127.0.0.1:5199",
+    "package": "npm run build && node scripts/package.mjs",
+    "load": "npm run build && node scripts/slu.mjs load",
+    "unload": "node scripts/slu.mjs unload",
+    "reload": "npm run unload && npm run load",
+    "bundle": "npm run build && node scripts/slu.mjs bundle",
+    "install-widget": "npm run build && node scripts/install.mjs",
+    "uninstall-widget": "node scripts/install.mjs --remove"
+  },
+  "dependencies": {
+    "@seelen-ui/lib": "2.8.4"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "esbuild": "0.28.2",
+    "typescript": "7.0.2"
+  }
+}

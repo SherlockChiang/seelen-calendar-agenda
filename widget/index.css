@@ -1,0 +1,377 @@
+/* Seelen injects --color-background / --color-foreground / --color-accent from the
+   Windows theme; the fallbacks only apply outside Seelen. */
+:root {
+  --ga-bg: color-mix(in srgb, var(--color-background, #1c1c1c) 92%, transparent);
+  --ga-fg: var(--color-foreground, #f3f3f3);
+  --ga-muted: color-mix(in srgb, var(--ga-fg) 58%, transparent);
+  --ga-faint: color-mix(in srgb, var(--ga-fg) 32%, transparent);
+  --ga-line: color-mix(in srgb, var(--ga-fg) 12%, transparent);
+  --ga-hover: color-mix(in srgb, var(--ga-fg) 8%, transparent);
+  --ga-accent: var(--color-accent, #4c8dff);
+  --ga-error: #ff8a80;
+  --ga-radius: 12px;
+}
+
+html,
+body {
+  margin: 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+/* The popup window is auto-sized to this element. */
+.ga-root {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 340px;
+  padding: 12px;
+  border-radius: var(--ga-radius);
+  border: 1px solid var(--ga-line);
+  background: var(--ga-bg);
+  color: var(--ga-fg);
+  font: 13px/1.35 "Segoe UI Variable Text", "Segoe UI", "Microsoft YaHei UI", system-ui, sans-serif;
+  user-select: none;
+}
+
+.ga-root *,
+.ga-root *::before,
+.ga-root *::after {
+  box-sizing: border-box;
+}
+
+.ga-actions {
+  display: flex;
+  gap: 2px;
+}
+
+.ga-icon-btn {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ga-muted);
+  cursor: pointer;
+}
+
+.ga-icon-btn:hover {
+  background: var(--ga-hover);
+  color: var(--ga-fg);
+}
+
+.ga-icon-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.ga-icon-btn.is-spinning svg {
+  animation: ga-spin 0.9s linear infinite;
+}
+
+@keyframes ga-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ------------------------------------------------------------------ month */
+
+.ga-cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0 6px 6px;
+}
+
+.ga-cal-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.ga-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 2px;
+}
+
+.ga-wd {
+  padding: 4px 0;
+  text-align: center;
+  color: var(--ga-muted);
+  font-size: 12px;
+}
+
+.ga-cell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ga-fg);
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+
+.ga-cell > span:first-child {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.ga-cell:hover {
+  background: var(--ga-hover);
+}
+
+.ga-cell.is-other-month {
+  color: var(--ga-faint);
+}
+
+.ga-cell.is-selected {
+  background: color-mix(in srgb, var(--ga-accent) 18%, transparent);
+}
+
+.ga-cell.is-today > span:first-child {
+  background: var(--ga-accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+.ga-dots {
+  position: absolute;
+  bottom: 2px;
+  display: flex;
+  gap: 2px;
+  height: 4px;
+}
+
+.ga-mini-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--event-color, var(--ga-accent));
+}
+
+/* ------------------------------------------------------------------ day agenda */
+
+.ga-agenda {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--ga-line);
+}
+
+.ga-agenda-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0 4px 6px;
+}
+
+.ga-agenda-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.ga-tag {
+  padding: 0 6px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ga-accent) 22%, transparent);
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.ga-agenda-body {
+  min-height: 72px;
+  max-height: 228px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ga-line) transparent;
+}
+
+.ga-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ga-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+.ga-item.is-clickable {
+  cursor: pointer;
+}
+
+.ga-item.is-clickable:hover {
+  background: var(--ga-hover);
+}
+
+.ga-item.is-ended {
+  opacity: 0.5;
+}
+
+.ga-dot {
+  flex: none;
+  width: 4px;
+  align-self: stretch;
+  min-height: 18px;
+  border-radius: 2px;
+  background: var(--event-color, var(--ga-accent));
+}
+
+.ga-item-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.ga-item-title,
+.ga-item-sub {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ga-item-sub {
+  color: var(--ga-muted);
+  font-size: 12px;
+}
+
+.ga-item-time {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  color: var(--ga-muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.ga-item.is-ongoing .ga-item-title {
+  font-weight: 600;
+}
+
+.ga-badge {
+  padding: 0 6px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ga-accent) 25%, transparent);
+  color: var(--ga-fg);
+  font-size: 11px;
+}
+
+.ga-empty {
+  margin: 0;
+  padding: 22px 0;
+  text-align: center;
+}
+
+/* ------------------------------------------------------------------ setup / sign-in */
+
+.ga-panel {
+  padding: 2px 6px 6px;
+}
+
+.ga-panel h2 {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ga-panel ol {
+  margin: 0 0 10px;
+  padding-left: 18px;
+  color: var(--ga-muted);
+}
+
+.ga-panel li + li {
+  margin-top: 4px;
+}
+
+.ga-panel p {
+  margin: 8px 0 0;
+}
+
+.ga-panel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ga-btn {
+  padding: 6px 12px;
+  border: 1px solid var(--ga-line);
+  border-radius: 8px;
+  background: var(--ga-hover);
+  color: var(--ga-fg);
+  font: inherit;
+  cursor: pointer;
+}
+
+.ga-btn:hover {
+  border-color: color-mix(in srgb, var(--ga-fg) 25%, transparent);
+}
+
+.ga-btn-primary {
+  border-color: transparent;
+  background: var(--ga-accent);
+  color: #fff;
+}
+
+.ga-muted {
+  color: var(--ga-muted);
+}
+
+/* ------------------------------------------------------------------ footer */
+
+.ga-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 6px 0;
+  font-size: 11px;
+}
+
+.ga-msg {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ga-msg.is-error {
+  color: var(--ga-error);
+}
+
+.ga-link {
+  margin-left: auto;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--ga-muted);
+  font: inherit;
+  cursor: pointer;
+}
+
+.ga-link:hover {
+  color: var(--ga-fg);
+  text-decoration: underline;
+}

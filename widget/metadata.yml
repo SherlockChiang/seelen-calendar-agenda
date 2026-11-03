@@ -1,0 +1,65 @@
+id: "@sherlockchiang/gcal-agenda"
+metadata:
+  displayName: !extend i18n/display_name.yml
+  description: !extend i18n/description.yml
+  tags:
+    - calendar
+    - google
+    - agenda
+icon: FaCalendarAlt
+preset: Popup
+instances: Single
+# Like @seelen/calendar-popup: created on first open, closed again a while after hiding.
+lazy: true
+loader: ThirdParty
+html: !include index.html
+js: !include index.js
+css: !include index.css
+plugins:
+  - !extend ./toolbar-plugin.yml
+settings:
+  - type: InputText
+    key: clientId
+    label:
+      en: Google OAuth client ID
+      zh-CN: Google OAuth 客户端 ID
+    description:
+      en: From a "Desktop app" OAuth client in Google Cloud Console with the Calendar API enabled.
+      zh-CN: 来自 Google Cloud Console 中“桌面应用”类型的 OAuth 客户端（需启用 Calendar API）。
+    defaultValue: ""
+  - type: InputText
+    key: clientSecret
+    label:
+      en: Google OAuth client secret
+      zh-CN: Google OAuth 客户端密钥
+    description:
+      en: Stored in Seelen's settings file in plain text. Desktop client secrets are not confidential; PKCE protects the sign-in.
+      zh-CN: 以明文保存在 Seelen 设置文件中。桌面客户端的密钥不属于机密，登录由 PKCE 保护。
+    defaultValue: ""
+  - type: InputText
+    key: authResponse
+    label:
+      en: Authorization response
+      zh-CN: 授权回调地址
+    description:
+      en: After clicking "Sign in with Google" on the widget, paste the full address of the page the browser ends on (http://127.0.0.1:…/?…code=…).
+      zh-CN: 在小组件上点击“使用 Google 登录”后，把浏览器最终停留页面的完整地址（http://127.0.0.1:…/?…code=…）粘贴到这里。
+    defaultValue: ""
+  - type: InputNumber
+    key: refreshMinutes
+    label:
+      en: Refresh interval (minutes)
+      zh-CN: 刷新间隔（分钟）
+    description:
+      en: Opening the calendar re-downloads a month only when its events are older than this.
+      zh-CN: 打开日历时，只有当该月的日程超过这个时间没更新才会重新下载。
+    min: 1
+    max: 240
+    step: 1
+    defaultValue: 10
+  - type: Switch
+    key: showDeclined
+    label:
+      en: Show declined events
+      zh-CN: 显示已拒绝的日程
+    defaultValue: false

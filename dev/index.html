@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agenda widget preview</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        padding: 24px;
+        box-sizing: border-box;
+        /* stand-in for a desktop wallpaper behind the translucent widget */
+        background: linear-gradient(135deg, #3a4f7a, #7a4f6d 55%, #c08a5b);
+        font: 13px "Segoe UI", system-ui, sans-serif;
+        color: #fff;
+      }
+      .grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+      }
+      figure {
+        margin: 0;
+      }
+      figcaption {
+        margin-bottom: 6px;
+        opacity: 0.85;
+      }
+      iframe {
+        width: 342px;
+        height: 660px;
+        border: 0;
+        background: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid">
+      <figure>
+        <figcaption>agenda · zh-CN · dark</figcaption>
+        <iframe src="/dev/frame.html?scenario=agenda&lang=zh-CN&theme=dark" allowtransparency="true"></iframe>
+      </figure>
+      <figure>
+        <figcaption>agenda · en · light</figcaption>
+        <iframe src="/dev/frame.html?scenario=agenda&lang=en&theme=light" allowtransparency="true"></iframe>
+      </figure>
+      <figure>
+        <figcaption>sign-in · zh-CN · dark</figcaption>
+        <iframe id="signin" src="/dev/frame.html?scenario=signin&lang=zh-CN&theme=dark" allowtransparency="true"></iframe>
+      </figure>
+      <figure>
+        <figcaption>setup · en · dark</figcaption>
+        <iframe src="/dev/frame.html?scenario=setup&lang=en&theme=dark" allowtransparency="true"></iframe>
+      </figure>
+    </div>
+  </body>
+</html>
