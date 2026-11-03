@@ -1,4 +1,4 @@
-id: "@sherlockchiang/gcal-agenda"
+id: "@uranus92/gcal-agenda"
 metadata:
   displayName: !extend i18n/display_name.yml
   description: !extend i18n/description.yml

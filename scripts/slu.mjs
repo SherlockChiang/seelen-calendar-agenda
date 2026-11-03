@@ -34,7 +34,7 @@ if (!bundles.length) {
 const { version } = JSON.parse(readFileSync(join(root, "package.json"), "utf8"));
 const text = readFileSync(bundles[0], "utf8").replace(/^( {2}path: ).*$/m, "$1''");
 mkdirSync(join(root, "dist"), { recursive: true });
-const out = join(root, "dist", `sherlockchiang-gcal-agenda-store-v${version}.yml`);
+const out = join(root, "dist", `uranus92-gcal-agenda-store-v${version}.yml`);
 writeFileSync(out, text);
 for (const b of bundles) rmSync(b);
 console.log(`store bundle: ${out}`);

@@ -77,7 +77,7 @@ let hidden = false;
 
 export class Widget {
   static readonly self = new Widget();
-  readonly id = "@sherlockchiang/gcal-agenda";
+  readonly id = "@uranus92/gcal-agenda";
   async init(): Promise<void> {}
   async ready(): Promise<void> {}
   onTrigger(cb: (payload: unknown) => void): void {
@@ -176,7 +176,7 @@ window.__preview = {
   /** Acts like clicking the date in the toolbar. */
   trigger() {
     hidden = false;
-    for (const cb of triggerListeners) cb({ id: "@sherlockchiang/gcal-agenda" });
+    for (const cb of triggerListeners) cb({ id: "@uranus92/gcal-agenda" });
   },
   setConfig(patch: Record<string, unknown>) {
     config = { ...config, ...patch };

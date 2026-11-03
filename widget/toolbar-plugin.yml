@@ -2,7 +2,7 @@
 # opens this widget's calendar with Google events instead of the built-in one.
 # `${self.id}` is the parent widget's id at runtime: `@user/name` when installed
 # from a folder, the marketplace UUID when installed from the Seelen store.
-id: "@sherlockchiang/tb-gcal-agenda"
+id: "@uranus92/tb-gcal-agenda"
 metadata:
   displayName:
     en: Date (Google Calendar)

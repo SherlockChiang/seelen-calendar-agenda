@@ -16,7 +16,7 @@ if (!appData) {
 
 const seelenDir = join(appData, "com.seelen.seelen-ui");
 const widgetsDir = join(seelenDir, "widgets");
-const target = join(widgetsDir, "sherlockchiang-gcal-agenda");
+const target = join(widgetsDir, "uranus92-gcal-agenda");
 
 if (process.argv.includes("--remove")) {
   rmSync(target, { recursive: true, force: true });

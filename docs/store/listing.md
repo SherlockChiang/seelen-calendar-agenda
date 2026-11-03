@@ -4,7 +4,7 @@ Upload, in this order, on <https://seelen.io> (Resources → create a Widget):
 
 | Field | File / text |
 | --- | --- |
-| Resource file | `dist/sherlockchiang-gcal-agenda-store-v<version>.yml` (from `npm run bundle`) |
+| Resource file | `dist/uranus92-gcal-agenda-store-v<version>.yml` (from `npm run bundle`) |
 | Portrait (1:1) | `docs/store/portrait.png` |
 | Banner (21:9) | `docs/store/banner.png` |
 | Screenshots (16:9) | `docs/store/screenshot-en.png`, `docs/store/screenshot-zh.png` |

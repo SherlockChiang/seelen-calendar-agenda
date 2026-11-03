@@ -25,7 +25,7 @@ Seelen UI's built-in calendar popup is a plain month view, and there is no Googl
 
 ## Install
 
-1. Download `sherlockchiang-gcal-agenda-v*.zip` from [Releases](https://github.com/SherlockChiang/seelen-calendar-agenda/releases) and extract it into `%APPDATA%\com.seelen.seelen-ui\widgets\`, so you get a `sherlockchiang-gcal-agenda` folder there.
+1. Download `uranus92-gcal-agenda-v*.zip` from [Releases](https://github.com/SherlockChiang/seelen-calendar-agenda/releases) and extract it into `%APPDATA%\com.seelen.seelen-ui\widgets\`, so you get a `uranus92-gcal-agenda` folder there.
 2. Restart Seelen UI.
 3. Right-click an empty part of the top bar → **Modules**, tick **Date (Google Calendar)** and untick the built-in **Calendar**. The new item is added at the right end; drag it to the middle.
 4. The first time you click it, Seelen asks whether **Google Calendar Agenda** may control other applications' windows. Seelen asks this of any third-party popup, because the popup has to bring its own window to the front. Allow it, or the popup can't take focus, close with `Esc`, or hide when you click elsewhere.
@@ -55,7 +55,7 @@ Notes:
 ## Privacy and security
 
 - Data goes only between your PC and Google. There is no server of ours.
-- Tokens are stored in `%APPDATA%\com.seelen.seelen-ui\data\sherlockchiang-gcal-agenda\` (`auth.json`, in plain text; `cache.json` holds the current month's events). Seelen gives each widget its own folder; the shared `localStorage` of third-party widgets is not used.
+- Tokens are stored in `%APPDATA%\com.seelen.seelen-ui\data\uranus92-gcal-agenda\` (`auth.json`, in plain text; `cache.json` holds the current month's events). Seelen gives each widget its own folder; the shared `localStorage` of third-party widgets is not used.
 - The client ID and secret are stored in Seelen's `settings.json` in plain text. A Desktop client secret is not confidential; PKCE protects the sign-in.
 - **Sign out** in the popup deletes these files and revokes the token at Google.
 - Event titles and locations come from other people's invites, so they are rendered as text, never HTML. Only `https://calendar.google.com` / `https://www.google.com` links are opened.
@@ -113,9 +113,9 @@ Build the Seelen store upload file into `dist/` (needs Seelen UI running); the i
 npm run bundle
 ```
 
-`widget/toolbar-plugin.yml` triggers the popup with `${self.id}`, which Seelen resolves to the widget's real ID: `@sherlockchiang/gcal-agenda` for a folder install, the marketplace UUID for a store install. A store install keeps its settings and sign-in separately from a folder install.
+`widget/toolbar-plugin.yml` triggers the popup with `${self.id}`, which Seelen resolves to the widget's real ID: `@uranus92/gcal-agenda` for a folder install, the marketplace UUID for a store install. A store install keeps its settings and sign-in separately from a folder install.
 
-Session-only loading through the `slu` CLI is also available: `npm run load` / `npm run reload` / `npm run unload`. You can also open the popup directly with `slu.exe widget trigger @sherlockchiang/gcal-agenda`; with the popup focused, `Ctrl+Shift+I` opens DevTools. Seelen's log is `%LOCALAPPDATA%\com.seelen.seelen-ui\logs\Seelen UI.log`; search for `gcal-agenda`.
+Session-only loading through the `slu` CLI is also available: `npm run load` / `npm run reload` / `npm run unload`. You can also open the popup directly with `slu.exe widget trigger @uranus92/gcal-agenda`; with the popup focused, `Ctrl+Shift+I` opens DevTools. Seelen's log is `%LOCALAPPDATA%\com.seelen.seelen-ui\logs\Seelen UI.log`; search for `gcal-agenda`.
 
 Seelen UI 2.8.10 quirks found while building this:
 

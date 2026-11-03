@@ -1,4 +1,4 @@
-// Writes dist/sherlockchiang-gcal-agenda-v<version>.zip: the built widget folder,
+// Writes dist/uranus92-gcal-agenda-v<version>.zip: the built widget folder,
 // ready to extract into %APPDATA%\com.seelen.seelen-ui\widgets\. Uses only
 // node:zlib so it runs the same on Windows and in CI.
 import { mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
@@ -6,7 +6,7 @@ import { join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { crc32, deflateRawSync } from "node:zlib";
 
-const FOLDER = "sherlockchiang-gcal-agenda";
+const FOLDER = "uranus92-gcal-agenda";
 const root = fileURLToPath(new URL("..", import.meta.url));
 const widgetDir = join(root, "widget");
 const { version } = JSON.parse(readFileSync(join(root, "package.json"), "utf8"));

@@ -25,7 +25,7 @@ Seelen UI 自带的日历弹窗只是一个月历，Seelen 资源商店里也没
 
 ## 安装
 
-1. 从 [Releases](https://github.com/SherlockChiang/seelen-calendar-agenda/releases) 下载 `sherlockchiang-gcal-agenda-v*.zip`，解压到 `%APPDATA%\com.seelen.seelen-ui\widgets\`，解压后那里应有一个 `sherlockchiang-gcal-agenda` 文件夹。
+1. 从 [Releases](https://github.com/SherlockChiang/seelen-calendar-agenda/releases) 下载 `uranus92-gcal-agenda-v*.zip`，解压到 `%APPDATA%\com.seelen.seelen-ui\widgets\`，解压后那里应有一个 `uranus92-gcal-agenda` 文件夹。
 2. 重启 Seelen UI。
 3. 在顶栏空白处右键 → **模块**，勾选 **日期（Google 日历）**，取消勾选自带的 **日历**。新模块会加在最右边，把它拖到中间。
 4. 第一次点击时，Seelen 会询问是否允许「Google 日历日程」控制其他应用程序的窗口。所有第三方弹窗都会被这样询问，因为弹窗需要把自己的窗口切到前台。请选择允许，否则弹窗拿不到焦点，`Esc` 和点到别处自动关闭都会失效。
@@ -55,7 +55,7 @@ Seelen 设置页要点 **保存** 才生效。一次登录尝试 30 分钟内有
 ## 隐私与安全
 
 - 数据只在你的电脑和 Google 之间传输，没有任何开发者服务器。
-- 令牌保存在 `%APPDATA%\com.seelen.seelen-ui\data\sherlockchiang-gcal-agenda\`（`auth.json`，明文；`cache.json` 存当月日程）。Seelen 为每个小组件分配独立文件夹，不使用第三方小组件共用的 `localStorage`。
+- 令牌保存在 `%APPDATA%\com.seelen.seelen-ui\data\uranus92-gcal-agenda\`（`auth.json`，明文；`cache.json` 存当月日程）。Seelen 为每个小组件分配独立文件夹，不使用第三方小组件共用的 `localStorage`。
 - 客户端 ID 和密钥以明文保存在 Seelen 的 `settings.json` 中。桌面客户端的密钥不属于机密，登录由 PKCE 保护。
 - 弹窗里的 **退出登录** 会删除这些文件，并向 Google 吊销令牌。
 - 日程标题和地点可能来自别人的邀请，因此一律按纯文本显示，不当作 HTML。只会打开 `https://calendar.google.com` / `https://www.google.com` 的链接。
@@ -113,9 +113,9 @@ npm run package
 npm run bundle
 ```
 
-`widget/toolbar-plugin.yml` 用 `${self.id}` 打开弹窗，Seelen 会把它替换成小组件的实际 ID：从文件夹安装时是 `@sherlockchiang/gcal-agenda`，从商店安装时是商店分配的 UUID。商店版的设置和登录状态与文件夹版相互独立。
+`widget/toolbar-plugin.yml` 用 `${self.id}` 打开弹窗，Seelen 会把它替换成小组件的实际 ID：从文件夹安装时是 `@uranus92/gcal-agenda`，从商店安装时是商店分配的 UUID。商店版的设置和登录状态与文件夹版相互独立。
 
-也可以用 `slu` 命令临时加载，只在本次 Seelen 运行期间有效：`npm run load` / `npm run reload` / `npm run unload`。也可以用 `slu.exe widget trigger @sherlockchiang/gcal-agenda` 直接打开弹窗；弹窗获得焦点时按 `Ctrl+Shift+I` 打开 DevTools。Seelen 日志在 `%LOCALAPPDATA%\com.seelen.seelen-ui\logs\Seelen UI.log`，搜索 `gcal-agenda`。
+也可以用 `slu` 命令临时加载，只在本次 Seelen 运行期间有效：`npm run load` / `npm run reload` / `npm run unload`。也可以用 `slu.exe widget trigger @uranus92/gcal-agenda` 直接打开弹窗；弹窗获得焦点时按 `Ctrl+Shift+I` 打开 DevTools。Seelen 日志在 `%LOCALAPPDATA%\com.seelen.seelen-ui\logs\Seelen UI.log`，搜索 `gcal-agenda`。
 
 开发中发现的 Seelen UI 2.8.10 行为：
 
