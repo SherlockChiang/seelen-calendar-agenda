@@ -1,37 +1,34 @@
-/* Seelen injects --color-background / --color-foreground / --color-accent from the
-   Windows theme; the fallbacks only apply outside Seelen. */
+/* Colors come from the active Seelen theme's shared popup variables (the same ones
+   the built-in calendar popup uses), which switch with light/dark mode. The popover
+   background, radius and shadow come from the theme's `.slu-std-popover` class; it is
+   opaque, so the transparent window needs no blending of translucent layers. */
 :root {
-  --ga-bg: color-mix(in srgb, var(--color-background, #1c1c1c) 92%, transparent);
-  --ga-fg: var(--color-foreground, #f3f3f3);
-  --ga-muted: color-mix(in srgb, var(--ga-fg) 58%, transparent);
-  --ga-faint: color-mix(in srgb, var(--ga-fg) 32%, transparent);
-  --ga-line: color-mix(in srgb, var(--ga-fg) 12%, transparent);
-  --ga-hover: color-mix(in srgb, var(--ga-fg) 8%, transparent);
-  --ga-accent: var(--color-accent, #4c8dff);
-  --ga-error: #ff8a80;
-  --ga-radius: 12px;
+  --ga-fg: var(--slu-std-fg-color);
+  --ga-muted: var(--slu-std-fg-secondary-color);
+  --ga-faint: var(--slu-std-fg-muted-color);
+  --ga-line: color-mix(in srgb, var(--slu-std-fg-color) 12%, transparent);
+  --ga-hover: var(--slu-std-ui-hover-overlay);
+  --ga-accent: var(--slu-std-ui-color);
+  --ga-on-accent: var(--slu-std-ui-fg-color);
+  --ga-error: light-dark(#c62828, #ff8a80);
 }
 
-html,
-body {
-  margin: 0;
-  background: transparent;
-  overflow: hidden;
-}
-
-/* The popup window is auto-sized to this element. */
+/* Sized to its content; the theme makes body transparent around a .slu-std-popover. */
 .ga-root {
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   width: 340px;
   padding: 12px;
-  border-radius: var(--ga-radius);
-  border: 1px solid var(--ga-line);
-  background: var(--ga-bg);
   color: var(--ga-fg);
   font: 13px/1.35 "Segoe UI Variable Text", "Segoe UI", "Microsoft YaHei UI", system-ui, sans-serif;
   user-select: none;
+}
+
+.ga-root,
+.ga-root *,
+.ga-root *::before,
+.ga-root *::after {
+  box-sizing: border-box;
 }
 
 .ga-root *,
@@ -138,14 +135,24 @@ body {
   color: var(--ga-faint);
 }
 
-.ga-cell.is-selected {
-  background: color-mix(in srgb, var(--ga-accent) 18%, transparent);
+/* Same states as the built-in calendar popup: today in accent text, selection filled. */
+.ga-cell.is-today {
+  color: var(--ga-accent);
+  font-weight: 700;
 }
 
-.ga-cell.is-today > span:first-child {
+.ga-cell.is-selected {
   background: var(--ga-accent);
-  color: #fff;
+  color: var(--ga-on-accent);
   font-weight: 600;
+}
+
+.ga-cell.is-selected:hover {
+  background: var(--slu-std-ui-hover-color);
+}
+
+.ga-cell.is-selected .ga-mini-dot {
+  box-shadow: 0 0 0 1px var(--ga-on-accent);
 }
 
 .ga-dots {
@@ -332,7 +339,7 @@ body {
 .ga-btn-primary {
   border-color: transparent;
   background: var(--ga-accent);
-  color: #fff;
+  color: var(--ga-on-accent);
 }
 
 .ga-muted {

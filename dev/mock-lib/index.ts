@@ -9,11 +9,8 @@ const scenario = params.get("scenario") ?? "agenda";
 const lang = params.get("lang") ?? "zh-CN";
 const theme = params.get("theme") ?? "dark";
 
-const vars =
-  theme === "light"
-    ? { "--color-background": "#f3f3f3", "--color-foreground": "#1b1b1b", "--color-accent": "#005fb8" }
-    : { "--color-background": "#202020", "--color-foreground": "#ffffff", "--color-accent": "#4cc2ff" };
-for (const [k, v] of Object.entries(vars)) document.documentElement.style.setProperty(k, v);
+// dev/theme-standin.css resolves its light-dark() colors from this, as Seelen's theme does.
+document.documentElement.style.colorScheme = theme === "light" ? "light" : "dark";
 
 // ------------------------------------------------------------------ data files
 

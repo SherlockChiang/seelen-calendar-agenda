@@ -4,7 +4,7 @@ English · [简体中文](README.zh-CN.md)
 
 A [Seelen UI](https://github.com/eythaann/Seelen-UI) widget that replaces the top-bar calendar popup with one that shows your **Google Calendar** events.
 
-<img src="docs/screenshot-en.png" alt="Calendar popup with Google Calendar events" width="340" />
+<img src="docs/screenshot-en.png" alt="Calendar popup with Google Calendar events" width="360" />
 
 Seelen UI's built-in calendar popup is a plain month view, and there is no Google Calendar integration in the Seelen resource store. This widget adds one.
 

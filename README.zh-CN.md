@@ -4,7 +4,7 @@
 
 一个 [Seelen UI](https://github.com/eythaann/Seelen-UI) 小组件：把顶栏点击日期弹出的日历，换成能显示 **Google 日历** 日程的版本。
 
-<img src="docs/screenshot-zh.png" alt="显示 Google 日历日程的日历弹窗" width="340" />
+<img src="docs/screenshot-zh.png" alt="显示 Google 日历日程的日历弹窗" width="360" />
 
 Seelen UI 自带的日历弹窗只是一个月历，Seelen 资源商店里也没有 Google 日历集成，所以做了这个。
 

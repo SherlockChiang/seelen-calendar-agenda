@@ -1,0 +1,43 @@
+/* Preview-only stand-in for the parts of Seelen's default theme the widget relies on
+   (shared/index.scss: --slu-std-* variables and .slu-std-popover). Like the real theme
+   it lives in a cascade layer, so the widget's own CSS wins where both apply. */
+@layer theme-standin {
+  :root {
+    --slu-std-fg-color: light-dark(#1b1b1b, #f3f3f3);
+    --slu-std-fg-secondary-color: light-dark(#4a4a4a, #c4c4c4);
+    --slu-std-fg-muted-color: light-dark(#8a8a8a, #7a7a7a);
+    --slu-std-bg-color: light-dark(#f3f3f3, #202020);
+    --slu-std-ui-color: light-dark(#005fb8, #60cdff);
+    --slu-std-ui-fg-color: light-dark(#ffffff, #000000);
+    --slu-std-ui-hover-color: light-dark(#004c93, #99ebff);
+    --slu-std-ui-hover-overlay: oklch(from #0078d4 l c h / 0.2);
+  }
+
+  body {
+    margin: 0;
+    color: var(--slu-std-fg-color);
+    background-color: var(--slu-std-bg-color);
+  }
+
+  body:has(> div > .slu-std-popover) {
+    background-color: transparent;
+    overflow: hidden;
+
+    > #app {
+      width: min-content;
+      height: min-content;
+      overflow: hidden;
+    }
+  }
+
+  .slu-std-popover {
+    width: 300px;
+    max-height: 700px;
+    overflow: auto;
+    padding: 8px;
+    margin: 10px;
+    background-color: var(--slu-std-bg-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.3);
+  }
+}

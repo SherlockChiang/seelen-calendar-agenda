@@ -16,6 +16,8 @@
         overflow: hidden;
         font-family: "Segoe UI Variable Display", "Segoe UI", "Microsoft YaHei UI", system-ui, sans-serif;
         color: #fff;
+        /* match the dark-mode frames, or Chromium paints an opaque iframe canvas */
+        color-scheme: dark;
       }
       .scene {
         position: relative;
@@ -43,14 +45,14 @@
       }
       iframe {
         position: absolute;
-        width: 342px;
-        height: 560px;
+        width: 362px;
+        height: 580px;
         border: 0;
         background: transparent;
         transform-origin: top left;
       }
       .shot iframe {
-        left: calc(50% - 342px * 0.8);
+        left: calc(50% - 362px * 0.8);
         top: 52px;
         transform: scale(1.6);
       }

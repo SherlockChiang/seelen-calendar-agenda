@@ -483,7 +483,8 @@ function render(): void {
 
 // ---------------------------------------------------------------- boot
 
-await widget.init({ autoSizeByContent: document.getElementById("root") });
+// Size to the wrapper so the popover's margin (room for the theme's shadow) is included.
+await widget.init({ autoSizeByContent: document.getElementById("app") });
 render();
 
 // Each time the toolbar opens the popup, start from today and refresh if stale.
